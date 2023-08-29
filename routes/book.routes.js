@@ -3,11 +3,12 @@ const BookModel = require('../models/Book.model');
 const router = express.Router();
 
 const Book = require("../models/Book.model")
-
+const Author = require("../models/Author.model");
 
 /* GET /books */
 router.get("/books", (req, res, next) => {
     Book.find()
+        .populate("author")
         .then((booksFromDB) => {
             res.render("books/books-list", { books: booksFromDB });
         })
@@ -23,6 +24,7 @@ router.get("/books/create", (req, res, next) => {
 router.get("/books/:bookId", (req, res, next) => {
 
     Book.findById(req.params.bookId)
+        .populate("author")
         .then(bookFromDB => {
             res.render("books/book-details", bookFromDB);
         })
@@ -45,7 +47,7 @@ router.post("/books/create", (req, res, next) => {
     };
 
     Book.create(newBook)
-        .then( (newBook) => {
+        .then((newBook) => {
             res.redirect("/books");
         })
         .catch(e => { next(e) });
@@ -56,6 +58,7 @@ router.get('/books/:bookId/edit', (req, res, next) => {
     const { bookId } = req.params;
 
     Book.findById(bookId)
+        .populate("author")
         .then(bookToEdit => {
             // console.log(bookToEdit);
             res.render('books/book-edit.hbs', { book: bookToEdit }); // <-- add this line
