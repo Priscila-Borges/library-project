@@ -1,0 +1,19 @@
+<h1>Authors in our DB:</h1>
+
+{{#each authors}}
+<section class="author-summary">
+  <h2>{{this.name}}</h2>
+  <p>
+    Country: {{this.country}} <br>
+  </p>
+
+  <a href="/authors/{{this._id}}">More details</a>
+  <a href="/authors/{{this._id}}/edit">Edit</a>
+  </p>
+
+  <form action="/authors/{{_id}}/delete" method="POST">
+    <button>Delete</button>
+  </form>
+  
+</section>
+{{/each}}

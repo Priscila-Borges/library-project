@@ -76,8 +76,6 @@ router.get('/books/:bookId/edit', (req, res, next) => {
         .catch(error => next(error));
 });
 
-
-
 // UPDATE: process form
 router.post('/books/:bookId/edit', (req, res, next) => {
     const { bookId } = req.params;
@@ -88,8 +86,6 @@ router.post('/books/:bookId/edit', (req, res, next) => {
         .catch(error => next(error));
 });
 
-
-
 // DELETE: delete book
 router.post('/books/:bookId/delete', (req, res, next) => {
     const { bookId } = req.params;
@@ -98,7 +94,6 @@ router.post('/books/:bookId/delete', (req, res, next) => {
         .then(() => res.redirect('/books'))
         .catch(error => next(error));
 });
-
 
 
 // READ: display details of one book
@@ -112,7 +107,6 @@ router.get("/books/:bookId", (req, res, next) => {
             console.log("Error getting book details from DB", e);
             next(e);
         })
-
 })
 
 
