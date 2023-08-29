@@ -51,6 +51,57 @@ router.post("/books/create", (req, res, next) => {
         .catch(e => { next(e) });
 });
 
+// UPDATE: display form
+router.get('/books/:bookId/edit', (req, res, next) => {
+    const { bookId } = req.params;
+
+    Book.findById(bookId)
+        .then(bookToEdit => {
+            // console.log(bookToEdit);
+            res.render('books/book-edit.hbs', { book: bookToEdit }); // <-- add this line
+        })
+        .catch(error => next(error));
+});
+
+
+
+// UPDATE: process form
+router.post('/books/:bookId/edit', (req, res, next) => {
+    const { bookId } = req.params;
+    const { title, description, author, rating } = req.body;
+
+    Book.findByIdAndUpdate(bookId, { title, description, author, rating }, { new: true })
+        .then(updatedBook => res.redirect(`/books/${updatedBook.id}`)) // go to the details page to see the updates
+        .catch(error => next(error));
+});
+
+
+
+// DELETE: delete book
+router.post('/books/:bookId/delete', (req, res, next) => {
+    const { bookId } = req.params;
+
+    Book.findByIdAndDelete(bookId)
+        .then(() => res.redirect('/books'))
+        .catch(error => next(error));
+});
+
+
+
+// READ: display details of one book
+router.get("/books/:bookId", (req, res, next) => {
+    const id = req.params.bookId;
+    Book.findById(id)
+        .then(bookFromDB => {
+            res.render("books/book-details", bookFromDB);
+        })
+        .catch((e) => {
+            console.log("Error getting book details from DB", e);
+            next(e);
+        })
+
+})
+
 
 
 module.exports = router;
