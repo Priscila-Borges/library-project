@@ -1,4 +1,3 @@
-
 <h2>Edit the book: {{book.title}}</h2>
 
 <form method="POST" action="/books/{{book._id}}/edit">
@@ -7,7 +6,11 @@
     </label>
 
     <label> Author:
-        <input type="text" name="author" value="{{book.author.name}}" />
+        <select name="author">
+            {{#each authors}}
+                <option value={{this._id}}>{{this.name}}</option>
+            {{/each}}
+        </select>
     </label>
 
     <label> Description:
