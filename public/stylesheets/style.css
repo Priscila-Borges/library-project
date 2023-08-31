@@ -34,3 +34,17 @@ nav a:last-child {
   border: 1px solid rgb(255, 213, 135);
   background-color: rgb(255, 213, 135);
 }
+
+.leftMenu {
+  width: 90%;
+  justify-content: space-evenly;
+}
+
+.rightMenu {
+  width: 40%;
+  justify-content: space-evenly;
+}
+
+#logout {
+ padding-top: 5%;
+}

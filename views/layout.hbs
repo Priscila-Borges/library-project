@@ -11,27 +11,23 @@
 
 <body>
 
-
-
    <nav>
-      <a href="/">Home</a>
-      <a href="/books">Books</a>
-      <a href="/books/create">Create new book</a>
-      <a href="/authors">Authors</a>
-      <a href="/signup">Signup</a>
-      <a href="/login">Login</a>
-      <a href="/user-profile">Profile</a>
+      <div class="leftMenu">
+         <a href="/">Home</a>
+         <a href="/books">Books</a>
+         <a href="/authors">Authors</a>
+         <a href="/user-profile">Profile</a>
+      </div>
+      <divclass="rigthtMenu">
+         <a href="/signup">Sign-up</a>
+         <a href="/login">Log-in</a>
+      </div>
 
-      <form id="logout-form" action="/logout" method="POST">
-         <button>Logout</button>
-      </form>
+</nav>
+    
+      {{{body}}}
 
-   </nav>
-
-
-   {{{body}}}
-
-   <script src="/js/script.js"></script>
+      <script src="/js/script.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,19 @@
 {{#if userDetails}}
+<section>
     <h1>Welcome {{userDetails.email}}</h1>
-    <p>This is your profile page my friend!</p>
+
+    <div>
+        <a href="/books/create">Create new book</a>
+    </div>
+
+    <div id="logout">
+        <form id="logout-form" action="/logout" method="POST">
+            <button>Logout</button>
+        </form>
+
+    </div>
+</section>
+
 {{else}}
-    <h1>User not logged in.</h1>
+<h1>Log in to access</h1>
 {{/if}}
